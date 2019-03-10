@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //数据类型的检测：typeof()返回一个对象或操作数的类型，返回值总为字符串;
+        typeof Infinity;//'number'
+        typeof NaN;//'number'
+        //引用类型与数值类型的赋值比较：
+        var num1=20;
+        var num2=num1;
+        num1=10;
+        console.log(num2);//20
+
+        var obj1={"username":"zhangsan"};
+        var obj2=obj1;
+        obj2.username="lisi";
+        console.log(obj1);//{username:"lisi"}
+
+        //引用类型--数组：
+        var arr1=[1,2,3,4,5];
+        var arr2=arr1;
+        arr2[0]=6;
+        console.log(arr1);//[6,2,3,4,5]
+
+        //浅拷贝：把一个对象的所有属性、属性值拷贝给另一个对象；
+        //深拷贝：把引用拷贝过去；
+
+        //引用类型与数值类型的判等比较：
+        //==判断两个变量的值：
+        //===判断变量的类型和变量值
+        var num3=20;
+        var num4=20;
+        console.log(num3==num4);
+        console.log(num3===num4);//true
+
+        //引用类型：判断的是指向的内存空间
+        //对象
+        var obj5={};
+        var obj6={};
+        console.log(obj5==obj6);//false
+
+        //引用类型与数值类型的参数传递的比较：
+        var a=6;
+        function fn1(x){
+            x=5;
+        }
+        fn1(a);
+
+        var obj7={"username":"zhangsan"};
+        function fn1(x){
+            x.username="lisi";
+        }
+        console.log(fn1(obj7));
+
+        //各类型的相关方法的查询自己百度：例如String MDN
+
+        //str.slice(截取字符串的起始位置，截取字符串的结束位置)：
+        //功能：在一个新的字符串中提取字符串并返回新字符串
+        //注意：slice()提取的新字符串包括起始位置但不包括结束位置。
+        //负数可以从反方向计算索引
+        var str1 = 'abcdefg';
+        var str2 = str1.slice(1,3);
+        console.log(str2);//abc
+
+        var str3= 'abcdefg';
+        var str4=str3.slice(1,-2);
+        console.log(str4);//bcde
+
+        //str.split(分隔符)使用指定的分隔符字符串将一个String对象分割成字符串数组
+        //每个子串作为数组的元素
+        
+        //基本数据类型的包装对象过程（装箱）：
+        var str0="asdfvsd";
+        console.log(str0.length);
+        //       ||
+        var str0="asdfvsd";
+        var strObject=new String(str0);
+        console.log(strObject.length);
+    </script>
+</body>
+</html>
