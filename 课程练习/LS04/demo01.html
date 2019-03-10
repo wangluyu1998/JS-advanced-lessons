@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ECMAScript是一种语言标准，JavaScript是完全基于ECMAScript实现的一种脚本语言
+
+        //!!!  ES5中没有块级作用域
+        if(true){
+            var username="zhangsan";
+        }
+        console.log(username);
+
+        if(false){
+            var username="zhangsan";
+        }
+        console.log(username);//相当于变量声明提前
+
+        for(var i=0;i<3;i++){
+
+        }
+        console.log(i); //3
+
+        //严格模式的两种应用模式
+        //非严格模式下，不使用var来显示声明变量，则该变量自动转化为全局变量
+        //因此，全局变量是JavaScript的一个比较大的缺陷
+        function fn2(){
+            'use strict'
+            username="zhangsan";
+        }
+        fn2();
+        console.log(username);
+
+        //this的用法：
+        //严格模式下，普通函数里面this指向全局变量：
+        function fn3(){
+            console.log(this);
+        }
+        fn3();
+
+        function fn4(){
+            'use strict'
+            console.log(this);
+        }
+        fn4();
+        //因此，可以用判断this的值来判断是否严格模式；
+        function isStrictMode(){
+            //'use strict'
+            return this===undefined?true:false;
+        }
+        if(isStrictMode()){
+            console.log("当前为严格模式");
+        }
+        else{
+            console.log("当前不是严格模式");
+        }
+
+        var str="dsfs";
+        str.length=1;//实质上这里是一个临时对象，用完就释放了
+        console.log(str.length);//而这里是一个新的临时对象，和上面是两个完全不同的对象，没有任何关系
+
+        //switch的值和case的值进行的是全等的比较，值和类型均需相等
+        var index1;
+        switch(index){
+            case 1:
+                console.log("星期一");
+                break;
+            case 2:
+                console.log("星期二");
+                break;
+            default:
+                console.log("星期八");
+        }
+    </script>
+</body>
+</html>
