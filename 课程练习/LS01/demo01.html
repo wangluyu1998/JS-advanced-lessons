@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Chrome控制台调试以及设置断点
+        //Ctrl+l:清除控制台
+        //Enter+shift:换行
+        var username="lisi";
+        var age=10;
+        function setName(){
+            username="zhangsan";
+        }
+        function setAge(){
+            age=20;
+        }
+        function setInfor(){
+            setName();
+            setAge();
+        }
+
+        //上学期JavaScript复习
+        //1.变量类型转换: String number boolean undefined null
+        //转化为Boolean类型的：
+            //转换方式：Boolean()、 value？true：false、 ！！value
+            //undefined、null->false;
+            //数字0、NaN->false; 其他数字->true;
+            //空串->false，其他字符串->true;
+            //对象总是转化为true
+        //转化为Number类型的：
+            //转换方式：Number()、+value、parseFloat()、parseInt()
+            //null->0; undefined->NaN;
+            //false->0; true->1;
+            //空字符串转化为0;含字符的->NaN; 数字两端空格可以忽略，中间空格不能忽略->NaN;
+                Number("dfc3.14cs"); //NaN
+                Number("  3.14  "); //3.14
+                Number("  3   14");//NaN
+        //转化为String类型的：
+            //String()、''+value、value.toString()
+            //undefined、null->'undefined' 'null';
+            //false、true->'false' 'true';
+            //3.14->'3.14'
+        //2.函数的定义和注意（变量的作用域）
+        //3.数组的定义方式:
+            var arr=[0,1,2,3,4,5];
+            for(var i=0;i<arr.length;i++){
+               console.log(arr[i]);
+            }
+
+            var arr1= new Array("a","b","c");
+            for(var i=0;i<arr1.length;i++){
+               console.log(arr1[i]);
+            }
+        //4.查找子串(indexOf）：返回在字符串中可以找到给定子串的第一个索引；
+        //  如果不存在，则返回-1；
+            var str1="abcdefg";
+            var str2="bcd";
+            str1.indexOf(str2); //结果为 1
+
+            var str3="abcdghjbcd";
+            var str4="bcd";
+            str3.indexOf(str4);//结果为 1
+
+            var str5="sdfwvf";
+            var str6="abc";
+            str5.indexOf(str6);//结果为 -1
+    </script>
+</body>
+</html>
