@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //for in遍历的是对象的所有可枚举的属性
+        var obj={"username":"zhangsan","age":"20"};
+        obj._proto_.sex="male";
+        for(var i in obj){
+            console.log(i);//username age
+        }
+
+        //obj([变量])：
+        console.log(obj[i]);
+
+        //若使用for var in遍历数组，结果会混乱，因此不建议用来遍历数组；
+        var arr1=[1,2,3];
+        for(var j in arr1){
+            console.log(j);
+        }   //0 1 2(结果出现了混乱)；
+
+
+        //JS中的赋值运算符
+        var a=45;
+        if(a=54){
+            console.log("二者相等");
+        }//这种情况下，误把判等号写成赋值号也会得到判等的结果；
+
+        //发反写法:把自变量数值反过来写，避免把判等号写成赋值号：
+        var a=45;
+        if(54=a){
+            console.log("二者相等");
+        }//反过来写的作用：即使误把判等号写成了复赋值号也会报错,利于排查；
+
+
+        //JS中的算数运算符
+        console.log(1+{});//"1[object object]"
+        console.log("5"-2);//3
+        console.log(true+true);//2
+        console.log("1"+"2"); //"12"
+        console.log("1"+2); //"12"
+
+        //++x:先运算 再输出
+        //x++:先输出 再运算
+        //++ --自动完成数据类型的隐式转换，转换为=>数字类型
+        //需要注意的是：+=不会进行类型的转换
+        var x=1;
+        console.log(++x);//2
+        var x=1;
+        console.log(x++);//1
+        var x = "1";
+        console.log(x+1);//11
+
+        var x = "1";
+        console.log(x+=1);//11
+        var x = 1;
+        console.log(x+=1);//2
+
+        //回顾++i与i++：
+        var i=1;
+        var y = ++i + ++i + ++i;
+        console.log(y);//9 即2+3+4
+
+        //JS的关系运算符
+        //==比较时，如类型不同，先把引用类型转换为基本类型再比较
+        //===先判断类型 ，类型不同则false，相同再进行值的判断
+        NaN===NaN //false
+        {}==={}  //false 对象的比较是比较的引用的地址，两个对象的地址必然不同
+
+        //JS逻辑运算符 
+        //最常见的是& ||的两边都是布尔类型
+        //当两边不是布尔类型时：
+
+        //对于&&：
+        //左操作数转换为布尔类型
+        //左真取右；左假取左
+        console.log(10&&0);//0
+        console.log(undefined&&10);//undefined
+        console.log({x:2}&&{name:"jenny"});//object {name:"jenny"}
+
+        //对于||：
+        //左操作数转换为布尔类型
+        //左真取左，左假取右
+        console.log(null||"hello");//hello
+        console.log({}||"word");//object {}
+
+        //实际应用111111111111：实现条件语句
+        var score=76;
+        if(score>90){
+            console.log("优");
+        }
+        else if(score>75){
+            consloe.log("良");
+        }
+        else if(score>60){
+            console.log("及格");
+        }
+        else{
+            sonsole.log("不及格");
+        }
+
+        //转换使用逻辑运算符
+        console.log((score>90 && "优") || (score>75 && "良"));
+
+        //转换为switch-case
+        switch(true){
+            case score>90:
+                console.log("优");
+                break;
+            case score>75:
+                console.log("良");
+                break;
+            case score>60:
+                console.log("及格");
+                break;
+            default: 
+                console.log("不及格");
+        }
+
+        //实际应用2222222222设置函数参数的默认值
+        function sum(x,y,z){
+            x=x;
+            y=y;
+            z=z;
+            return x+y+z;
+        }
+        sum(); //NaN  
+        //可看出来：js中的形参和实参可以不一致，甚至实参可以设置为空
+        //所以可以用||为形参设置一个默认值
+        function sum(x,y,z){
+            x=x || 1;
+            y=y || 2;
+            z=z || 3;
+            return x+y+z;
+        }
+        sum();
+        //需要注意的是：当时用||为形参设置默认值时，对于一些特殊的输入情况，会出错 如：
+        sum(0,0,0);//本应为0，结果会因为取默认值而为6，因为0转化为false
+        sum(false,false,false);
+        //对此进行的改进：
+        function sum(x,y,z){
+            (x!=false) && (x=x || 1);
+            (y!=false) && (y=y || 2);
+            (z!=false) && (z=z || 3);
+            return x+y+z;
+        }
+        sum();
+
+
+        //而ES6中的简单写法为：
+        function sum1(x=1,y=2,z=3){
+            return x+y+z;
+        }
+        sum1(4,5,6);
+    </script>
+</body>
+</html>
