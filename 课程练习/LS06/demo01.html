@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //函数的定义方式==========***********=========///////////////==========
+    
+
+        //first：函数显式声明的方式(特点是可以在声明前调用);
+        function max(a,b){
+            return a>b?a:b;
+        }
+        max(2,3);//结果为3
+
+        max(2,3);
+        function max(a,b){
+            return a>b?a:b;
+        }//结果为3
+
+        //second：函数表达式的形式来定义：
+        //不能在min声明前进行调用,即：
+        min(2,3);
+        var min=function(x,y){
+            return x>y?x:y;
+        }//会报错：min is not a function
+
+        var min=function(x,y){
+            return x>y?x:y;
+        }
+        min(2,3);//结果为3
+
+        //third:通过Function构造函数实例化定义：
+        //Function(arg1,arg2,arg3...,函数体)
+        //执行效率较低，但较为灵活
+        var fn1=new Function('a','b','return a>b?a:b;');
+        fn1(2,3);//3
+
+
+
+        //函数调用方式==========***********=========///////////============
+        //first：作为函数直接调用
+        //this的含义—————非严格模式下：全局对象；严格模式下为undefined
+        function test(){
+            console.log(this);
+        }
+        test();//window....
+
+        'use strict'
+        function test(){
+            console.log(this);
+        }
+        test();
+
+        //作为方法调用（this指向调用此方法的对象）
+        var obj={
+            x:0,
+            test:function(){
+                console.log(this.x);
+            }
+        };
+        obj.test();//结果为0
+
+        //通过call()和apply()间接调用
+        var objA={
+            name:"AA"
+        }
+        var objB={
+            name:'BB'
+        }
+        objA.test=function(){
+            console.log(this.name);
+        }
+        objA.test();
+        //方法.call(当前对象)
+        //将方法的调用执行从原有对象转移到当前对象
+        objA.test.call(objB);//原有对象是objA,当前对象是objB
+
+        //作为构造函数调用(this指向实例化的对象)
+        function Person(username){
+            this.username=username;
+            this.sayHi=function(){
+                console.log(this.username);
+            }
+        }
+        var person1=new Person('zhangsan');
+        person1.sayHi();
+        var person2=new Person('lisi');
+        person2.sayHi();
+        //由于这个sayHi方法大家可以共用，所以把他定义在prototype上；
+        function Person(username){
+            this.username=username;
+        }
+        Person.prototype.sayHi=function(){
+                console.log(this.username);
+        }
+        var person1=new Person('zhangsan');
+        var person2=new Person('lisi');
+        person1.sayHi();
+        person2.sayHi();
+
+
+
+        //函数参数的数量问题========*************========/////////////==========
+
+        //实参数量大于形参的情况：
+        //arguments是一个类数组结构，可以使用它获取所有实参、类数组对象、拥有对象属性
+        function test(){
+            console.log(arguments);//类数组结构，也可用于遍历
+            var s="";
+            for(var i=0;i<arguments.length;i++){
+                s+=arguments[i];
+            }
+            return s;
+        }
+        test("Hello ","world,","nice ",'to ','meet ','you!');
+
+        //实参数量小于形参的情况
+        //少的参数值会输出undefined，但是可以用||来给出默认值
+        var sum=function(a,b,c){
+            // b=b||4;
+            // c=c||5;
+            return a+b+c;
+        }
+        console.log(sum(1,2,3));//1+2+3
+        console.log(sum(1,2));//1+2+5
+        console.log(sum(1));//1+4+5
+
+
+
+        //参数类型与传递方式（值，引用）==========***********==========//////////========
+
+        //值传递（实参为基本数据类型时，形参不影响实参）
+        var a=1;
+        function test(x){
+            x=2;
+            console.log(x,a);
+        }
+        console.log(a);//结果为1
+        test();//结果为2 1
+        test(5);//结果为2 1
+
+        //引用传递（实参为引用类型时，形参改变实参）
+        var obj={
+            x:0
+        };
+        function bar(obj1){
+            obj1.x=2;
+            console.log(obj,obj1);
+        }
+        bar(obj);//结果为{x:2} {x:2}
+
+        var obj={X:1};
+        function fee(o){
+            o.x=3;
+            console.log(obj.x,o.x);
+        }
+        fee(obj);//结果是3 3
+        console.log(obj.x);// 结果为3
+
+
+        //思考：
+        //定义一个函数，传入一个参数，完成
+        //对参数的复制处理，生成一个新的变量
+        //并返回
+        //参数类型 string boolean number数组
+        function copyArg(arg1){
+            var copy;
+            switch(true){
+                case(arg1 instanceof String):
+                case(arg1 instanceof Number):
+                case(arg1 instanceof Boolean):
+                    copy=arg1;
+                    break;
+                case(arg1 instanceof Array):
+                    copy=[];
+                    for(i<0;i<arg1.length;i++){
+                        copy[i]=arg1[i];
+                    }
+                    break;
+            }
+
+        }
+</script>
+</body>
+</html>
