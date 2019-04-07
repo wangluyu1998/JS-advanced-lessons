@@ -1,0 +1,43 @@
+/*
+* Created by wangluyu on 2019/4/6.
+*/
+//IIFE实际引用案例
+    function fn1(){
+        var arr1=[];
+        for(var i=0;i<10;i++){
+            arr1[i]=function(){
+                return i;
+            }
+        }
+        return arr1;
+    }
+    var result=fn1();
+    result[0]();//结果为10
+
+    //避免非期望的变量共享问题：
+    for (var i = 0; i < 5; i++) {
+        setTimeout(function() {
+            console.log(new Date, i);
+        }, 1000*i);
+    }
+    console.log("i：",i);
+    
+    for (var i = 0; i < 5; i++) {
+        (function(j) {  // j = i
+            setTimeout(function() {
+                console.log(new Date, j);
+            }, 1000*i);
+        })(i);
+    }
+
+    //函数作为参数(高阶函数的一种）、静态词法作用域、IIFE
+    var max = 10;
+    var fn = function (x) {
+        if(x > max){
+            console.log(x);
+        }
+    };
+    (function (f) {
+        var max = 100;
+        f(15);
+    })(fn);
