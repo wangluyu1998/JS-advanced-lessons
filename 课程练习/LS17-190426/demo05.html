@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="username"/>
+
+</body>
+<script>
+    //立即执行函数表达式的作用：形成自己的独立的作用域
+    (function(w,d){
+        function inputIdentify(inputId){
+            this._init();
+            this._effect();
+        }
+        inputIdentify.prototype._init=function(inputId){
+            var inputObject=document.getElementById(inputId);
+            this.inputObject=inputObject;
+        }
+        inputIdentify.prototype._effect=function(){
+            this.inputObject.onblur=function(){
+                console.log("文本框失去焦点");
+            }
+            this.inputObject.onfocus=function(){
+                console.log("文本获取焦点");
+            }
+        }
+        w.inputIdentify=inputIdentify;
+    })(window,document)
+
+    var input1=new inputIdentify("username");
+</script>
+</html>
