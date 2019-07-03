@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQueryDOM操作二</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <style>
+        #container{
+            width:1000px;
+            margin:0 auto;
+            border:5px solid red;
+        }
+        #btnlist{
+            width:1000px;
+            height:20px;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="1.png" id="img1">
+    </div>
+    <div id="btnlist">
+        <button id="after">after</button>
+        <button id="insertAfter">insertAfter</button>
+    </div>
+</body>
+<script>
+    /*
+        jQery DOM操作 添加节点的方法：
+    */
+    $("#after").click(function(){
+        var $img2=("<img src='2.png'/>");
+        $("#img1").after($img2);
+    })
+
+    $(document).ready(function(){
+        alert(1);
+    })
+</script>
+</html>

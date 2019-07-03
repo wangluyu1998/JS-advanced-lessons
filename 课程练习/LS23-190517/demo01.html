@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery事件一</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <img src="girl.jpg" id="img11"/>
+    <img src="girl.jpg"/>
+    <img src="girl.jpg"/>
+    <img src="girl.jpg"/>
+    <img src="girl.jpg"/>
+</body>
+<script>
+    /*jquery事件*/
+    // $("#img11").mouseover(function(){
+    //     $(this).css("border","5px solid red");    
+    // })
+
+    //鼠标滑上每张图片都有效果，无需遍历
+    $("img").mouseover(function(){
+        $(this).css("border","5px solid skyblue");    
+    })
+
+
+</script>
+</html>

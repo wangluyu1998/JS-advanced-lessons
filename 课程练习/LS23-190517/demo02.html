@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jquery事件二</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <style>
+        div{
+            width: 100px;
+            height:100px;
+            border:6px solid pink;
+            margin:10px;
+            float:left;
+            text-align:center;
+            line-height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div>层1</div>
+    <div>层2</div>
+    <div>层3</div>
+</body>
+<script>
+    $("div").mouseover(function(){
+        $(this).css("background","blue");
+    })
+    $("div").mouseleave(function(){
+        $(this).css("background","gray");
+    })
+    $("div").click(function(){
+        $(this).css("background","red");
+    })
+</script>
+</html>

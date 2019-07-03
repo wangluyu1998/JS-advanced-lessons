@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width:500px;
+            height:500px;
+            background-color:yellowgreen;
+        }
+        #div2{
+            width:250px;
+            height:250px;
+            background-color: skyblue;
+            float:left;
+        }
+        #div3{
+            width:100px;
+            height:100px;
+            background-color:white;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3">
+                <a href="http://www.baidu.com" id="baidu">百度</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    /*
+        默认情况下，事件流冒泡：从内向外
+
+        addEventListener("事件名"，"回调函数"，"是否为捕获事件流")
+        默认情况下为false，即冒泡流，即从内往外
+        true即为捕获流
+
+        e.target
+        是触发事件的源对象，即最内层元素的DOM对象
+
+        e.currentTarget
+        触发事件的当前对象，即当前作用的DOM对象
+
+        e.stopPropagation
+        阻止冒泡或者捕获过程
+
+        e.preventDefault
+        阻止元素的默认操作
+
+        e.bubbles
+        只读属性，返回一个布尔值，表明当前事件流是否是冒泡
+
+        e.cancelable
+        只读属性，表明该事件是否被取消了默认行为
+
+        e.canselBubble
+        可读写的，是否阻止冒泡过程
+    */
+    var div1=document.getElementById("div1");
+    var div2=document.getElementById("div2");
+    var div3=document.getElementById("div3"); 
+    var baidu=document.getElementById("baidu");
+    div1.addEventListener("click",function(e){
+        e.stopPropagation();
+        //console.log(e.target);
+        console.log("div1被点击了");
+        //console.log(e.currentTarget);
+    },false)
+    div2.addEventListener("click",function(e){
+        //console.log(e.target);
+        console.log("div2被点击了");
+        //console.log(e.currentTarget);
+    },false)
+    div3.addEventListener("click",function(e){
+        //console.log(e.target);
+        console.log("div3被点击了");
+        //console.log(e.currentTarget);
+    },false)
+    baidu.addEventListener("click",function(e){
+        e.preventDefault();
+    })
+</script>
+</html>
